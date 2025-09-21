@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Machine Learning</title>
+    <link rel="shortcut icon" href="A.png" type="image/x-icon">
+    <style>
+       body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-image: url('fundo\ Machine.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: left;
+        }
+
+        h1,
+        h2,
+        h3 {
+            color: #ff9900;
+        }
+
+        p,
+        ol,
+        ul {
+            margin-bottom: 20px;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 30.25%; /* Proporção do vídeo (altura/largura) */
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .video-button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #ff9900;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 5px;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+
+    </style>
+</head>
+<body>
+
+    <!-- Container do vídeo -->
+    <div class="video-container">
+        <iframe id="videoIframe" src="https://www.youtube.com/embed/Y8InrrkqfyA" frameborder="0" allowfullscreen></iframe>
+    </div>
+
+    <!-- Botão para iniciar a reprodução -->
+    <a class="video-button" href="javascript:void(0);" onclick="playVideo()">Assista ao Vídeo</a>
+
+   <script>
+        // Função para iniciar a reprodução do vídeo
+        function playVideo() {
+            var iframe = document.getElementById("videoIframe");
+            iframe.src = iframe.src + "?autoplay=1";
+        }
+    </script>
+
+</body>
+</html>
+
+    <h1>O que é Machine Learning?</h1>
+    <p>Machine learning é uma área da inteligência artificial (IA) e da ciência da computação que se concentra no uso de dados e algoritmos para imitar a maneira como os humanos aprendem, melhorando gradualmente sua precisão.</p>
+
+    <p>A IBM tem um amplo histórico de machine learning. Um de seus funcionários, Arthur Samuel, é considerado o criador do termo "machine learning" com sua pesquisa (<a href="https://hci.iwr.uni-heidelberg.de/system/files/private/downloads/636026949/report_frank_gabel.pdf">PDF, 481 KB</a>) sobre o jogo de damas. Robert Nealey, o autoproclamado rei da dama, jogou o jogo em um computador IBM 7094 em 1962 e perdeu para o computador. Comparado ao que pode ser feito hoje, esse feito quase parece trivial, mas é considerado um marco importante no campo da inteligência artificial.</p>
+
+    <p>Nas últimas duas décadas, os avanços tecnológicos em armazenamento e capacidade de processamento possibilitaram a criação de alguns produtos inovadores baseados em machine learning, como o mecanismo de recomendação da Netflix e os carros autônomos.</p>
+
+    <h2>Machine Learning vs. Deep Learning vs. Redes Neurais</h2>
+    <p>Como o deep learning e o machine learning tendem a ser usados como sinônimos, é importante observar as nuances entre eles. Machine learning, deep learning e redes neurais são todos subcampos da inteligência artificial. No entanto, as redes neurais representam um subcampo do machine learning e o deep learning é um subcampo das redes neurais.</p>
+
+    <h2>Como o Machine Learning Funciona</h2>
+    <p>A UC Berkeley (<a href="https://www.youtube.com/watch?v=O5xeyoRL95U">link externo à IBM</a>) separa o sistema de aprendizado de um algoritmo de machine learning em três partes principais:</p>
+    <ol>
+        <li><strong>Um processo de decisão:</strong> Em geral, algoritmos de machine learning são usados para fazer uma previsão ou classificação. Com base em alguns dados de entrada, que podem ser rotulados ou não rotulados, seu algoritmo produzirá uma estimativa sobre um padrão nos dados.</li>
+        <li><strong>Uma função de erro:</strong> Uma função de erro avalia a capacidade de previsão do modelo. Se houver exemplos conhecidos, uma função de erro poderá fazer uma comparação para avaliar a precisão do modelo.</li>
+        <li><strong>Um processo de otimização de modelo:</strong> Se o modelo pode se ajustar melhor aos pontos de dados no conjunto de treinamento, então, as pontuações são ajustadas para reduzir a discrepância entre o exemplo conhecido e a estimativa do modelo. O algoritmo repetirá este processo de avaliação e otimização, atualizando as pontuações de maneira autônoma até que um limite de precisão seja atingido.</li>
+    </ol>
+
+    <h2>Métodos de Machine Learning</h2>
+    <p>Os modelos de machine learning podem ser classificados em três categorias principais:</p>
+
+    <h3>Machine Learning Supervisionado</h3>
+    <p>O aprendizado supervisionado, também conhecido como machine learning supervisionado, é definido pelo uso de conjuntos de dados rotulados para treinar algoritmos que classificam dados ou predizem resultados com precisão. Conforme os dados de entrada são alimentados no modelo, ele ajusta suas pontuações até que esteja ajustado de maneira adequada. Isso ocorre como parte do processo de validação cruzada para garantir que o modelo evita super ajuste ou subajuste. O aprendizado supervisionado ajuda as organizações a resolver uma variedade de problemas do mundo real em grande escala, como a classificação de spam em uma pasta separada da sua caixa de entrada. Alguns métodos usados na aprendizagem supervisionada incluem redes neurais, naïve bayes, regressão linear, regressão logística, floresta aleatória e máquina de vetores de suporte (SVM).</p>
+
+    <h3>Machine Learning Não Supervisionado</h3>
+    <p>O aprendizado não supervisionado, também conhecido como machine learning não supervisionado, usa algoritmos de machine learning para analisar e agrupar conjuntos de dados não rotulados. Esses algoritmos descobrem padrões ocultos ou agrupamentos de dados sem a necessidade de intervenção humana. A capacidade deste método de descobrir semelhanças e diferenças nas informações o torna ideal para análise exploratória de dados, estratégias de vendas cruzadas, segmentação de clientes, imagem e reconhecimento de padrões. É usado também para reduzir o número de recursos em um modelo através do processo de redução de dimensionalidade. A análise de componente principal (PCA) e decomposição em valores singulares (SVD) são duas abordagens comuns para isso. Outros algoritmos usados no aprendizado não supervisionado incluem redes neurais, armazenamento em cluster de k-médias, métodos de armazenamento em cluster probabilístico e muito mais.</p>
+
+    <h3>Aprendizado Semissupervisionado</h3>
+    <p>O aprendizado semissupervisionado oferece um bom meio-termo entre o aprendizado supervisionado e o não supervisionado. Durante o treinamento, ele usa um conjunto de dados rotulado menor para orientar a classificação e a extração de recursos de um conjunto de dados maior e não rotulado. O aprendizado semissupervisionado pode resolver o problema de não ter dados rotulados suficientes para um algoritmo de aprendizado supervisionado. Ajuda também se for muito caro rotular dados suficientes.</p>
+
+    <h2>Machine Learning por Reforço</h2>
+    <p>O machine learning por reforço é um modelo de aprendizado semelhante ao aprendizado supervisionado, mas o algoritmo não é treinado usando dados de amostra. Este modelo aprende à medida que avança por meio de tentativa e erro. Uma sequência de resultados bem-sucedidos será reforçada para desenvolver a melhor recomendação ou política para um determinado problema.</p>
+    <p>O sistema IBM® Watson que venceu o desafio Jeopardy! em 2011 é um bom exemplo. O sistema usou o aprendizado por reforço para decidir se tentava uma resposta (ou pergunta, por assim dizer), qual quadrado selecionar no tabuleiro e quanto apostar, especialmente nos "Daily doubles".</p>
+    
+    <h2>Algoritmos Comuns de Machine Learning</h2>
+    <p>Alguns algoritmos machine learning são comumente usados. São eles:</p>
+
+    <ul>
+        <li><strong>Redes Neurais:</strong> As redes neurais simulam a forma como o cérebro humano funciona, com um grande número de nós de processamento interligados. As redes neurais têm a capacidade de reconhecer padrões e desempenham um papel importante nos aplicativos, incluindo tradução de linguagem natural, reconhecimento de imagem, reconhecimento de voz e criação de imagem.</li>
+        <li><strong>Regressão Linear:</strong> Este algoritmo é usado para prever valores numéricos com base em um relacionamento linear entre diferentes valores. Por exemplo, a técnica poderia ser usada para prever preços de imóveis residenciais com base nos históricos de dados da região.</li>
+        <li><strong>Regressão Logística:</strong> Este algoritmo de aprendizado supervisionado faz previsões para variáveis de resposta categórica, como perguntas de respostas "sim/não". Pode ser usado para aplicações como classificação de spam e controle de qualidade em uma linha de produção.</li>
+        <li><strong>Agrupamento:</strong> O uso de algoritmos de aprendizado não supervisionado, armazenamento em cluster, pode identificar padrões nos dados para que possam ser agrupados. Os computadores podem ajudar os cientistas de dados a identificar diferenças entre itens de dados que os humanos não perceberam.</li>
+        <li><strong>Árvores de Decisão:</strong> As árvores de decisão podem ser usadas tanto para prever valores numéricos (regressão) quanto para classificar dados em categorias. As árvores de decisão usam uma sequência de ramificação de decisões vinculadas que podem ser representadas com um diagrama de árvore. Uma das vantagens das árvores de decisão é que elas são fáceis de validar e auditar, diferente da caixa preta da rede neural.</li>
+        <li><strong>Floresta Aleatória:</strong> Em uma floresta aleatória, o algoritmo de machine learning prediz um valor ou categoria combinando os resultados de várias árvores de decisão.</li>
+        <h2>Casos de Uso de Machine Learning do Mundo Real</h2>
+        <p>Aqui estão apenas alguns exemplos de machine learning que você talvez encontre todos os dias:</p>
+    
+        <h3>Reconhecimento de Fala</h3>
+        <p>Também é conhecido como Reconhecimento Automático de Fala (ASR), reconhecimento de fala em computador ou speech-to-text. É um recurso que usa o Processamento de Linguagem Natural (NLP) para processar o discurso humano em um formato escrito. Muitos dispositivos móveis incorporam o reconhecimento de voz em seus sistemas para realizar buscas de fala, como por exemplo a Siri, ou para oferecer mais acessibilidade no envio de mensagens.</p>
+    
+        <h3>Serviço ao Cliente</h3>
+        <p>Os chatbots online estão substituindo os agentes humanos ao longo da jornada do cliente, mudando a forma como pensamos sobre o engajamento do cliente em sites e plataformas de redes sociais. Os chatbots respondem às perguntas mais frequentes (FAQs) sobre temas como frete, ou fornecem avisos personalizados, como venda cruzada de produtos ou sugestões de tamanhos aos usuários. Os exemplos incluem agentes virtuais em sites de comércio eletrônico; bots sistema de mensagens, usando Slack e Facebook Messenger; e tarefas geralmente feitas por assistentes virtuais e assistentes de voz.</p>
+    
+        <h3>Computer Vision</h3>
+        <p>Esta tecnologia de IA permite que computadores e sistemas extraiam informações significativas a partir de imagens digitais, vídeos e outras entradas visuais para tomar ações adequadas. Impulsionada por redes neurais convolucionais, a computer vision tem aplicações de marcação de fotos nas mídias sociais, imagens radiológicas na área médica e carros autônomos no setor automotivo.</p>
+    
+        <h3>Mecanismos de Recomendação</h3>
+        <p>Usando dados de comportamentos de consumo anteriores, os algoritmos de IA ajudam a descobrir tendências de dados que podem ser usadas para desenvolver estratégias mais eficazes de venda cruzada. Essa abordagem é usada por comerciantes online para fazer recomendações de produtos relevantes aos clientes durante o processo de finalização da compra.</p>
+    
+        <h3>Negociação de Ações Automatizadas</h3>
+        <p>Desenvolvidas para otimizar as carteiras de ações, as plataformas de negociação de alta frequência impulsionadas por IA fazem milhares ou até milhões de negociações por dia sem intervenção humana.</p>
+    
+        <h3>Detecção de Fraude</h3>
+        <p>Os bancos e outras instituições financeiras podem usar o machine learning para identificar transações suspeitas. O aprendizado supervisionado pode treinar um modelo usando informações sobre transações fraudulentas conhecidas. A detecção de anomalias pode identificar transações que parecem atípicas e merecem investigação mais aprofundada.</p>
+    
+    </ul>
+
+   
+</body>
+</html>

@@ -1,0 +1,197 @@
+body, h1, h2, p, ul, li {
+    margin: 0;
+    padding: 0;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #030000;
+    color: #fff;
+}
+
+.logo {
+    text-align: center;
+}
+
+.logo img {
+    max-width: 100%;
+    height: auto;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+nav ul li {
+    margin: 0 10px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #fff;
+}
+
+main {
+    position: relative;
+}
+
+.background-image {
+    background-image: url('fundo02.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    z-index: -1;
+}
+
+.botao-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    max-width: 400px;
+}
+
+.botao {
+    font-size: 1rem;
+    color: rgb(57, 209, 247);
+    background-color: rgb(0, 0, 0);
+    width: 100%;
+    height: 50px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 18px;
+    text-decoration: none;
+    box-shadow: 0px 5px 10px rgba(250, 248, 248, 0.5);
+}
+
+.botao:hover {
+    background-color: #000;
+}
+
+.videos-mais-acessados {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    color: #fff;
+    font-size: 18px;
+    text-align: right;
+}
+
+.videos-mais-acessados h2 {
+    font-size: 24px;
+    color: #ffd700;
+    margin-bottom: 10px;
+}
+
+.videos-mais-acessados ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.videos-mais-acessados li {
+    margin-bottom: 10px;
+}
+
+.videos-mais-acessados li a {
+    text-decoration: none;
+    color: #ffd700;
+    font-size: 18px;
+    transition: color 0.3s ease;
+}
+
+.videos-mais-acessados li a:hover {
+    color: #fff;
+}
+
+#duvidas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    padding: 32px;
+}
+
+.duvida {
+    position: relative;
+    flex: 1 1 300px;
+}
+
+.duvida h3 {
+    border: 2px solid #ff725e;
+    border-radius: 8px;
+    cursor: pointer;
+    padding: 24px;
+}
+
+.duvida img {
+    position: absolute;
+    top: 32px;
+    right: 24px;
+}
+
+.duvida p {
+    border: 1px solid #ff725e;
+    border-top: 0;
+    margin-top: -8px;
+    padding: 0 24px;
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+    transition: 0.5s;
+}
+
+.duvida.ativa p {
+    height: fit-content;
+    opacity: 1;
+    padding: 24px;
+}
+
+/* Media queries para telas pequenas */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav ul {
+        flex-direction: column;
+    }
+
+    .botao-container {
+        width: 95%;
+    }
+
+    #duvidas {
+        flex-direction: column;
+        padding: 16px;
+        gap: 16px;
+    }
+
+    .videos-mais-acessados {
+        position: relative;
+        top: auto;
+        right: auto;
+        transform: none;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+}
