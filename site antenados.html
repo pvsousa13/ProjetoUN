@@ -2,23 +2,29 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="A.png" type="image/x-icon">
     <title>Antenados</title>
-    <link rel="stylesheet" href="index.css"> 
+    <link rel="stylesheet" href="index.css">
     <style>
-        /* Estilos para o cabeçalho */
+        * {
+            box-sizing: border-box;
+        }
+
+        body, h1, h2, h3, p, ul, li, a {
+            margin: 0;
+            padding: 0;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
         header {
-            background-color: black; 
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1;
+            background-color: black;
+            width: 100%;
             display: flex;
+            flex-wrap: wrap;
             justify-content: space-between;
             align-items: center;
-            padding: 15px; 
+            padding: 10px 20px;
         }
 
         .logo img {
@@ -28,67 +34,43 @@
 
         nav ul {
             list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        nav ul li {
-            display: inline;
-            margin-right: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
         }
 
         nav ul li a {
             text-decoration: none;
             color: white;
-            font-family: 'Times New Roman', Times, serif;
-            font-size: 30px;
+            font-size: 18px;
         }
 
-        /* Estilos para a seção de "Vídeos Mais Acessados" no cabeçalho */
         .videos-mais-acessados-header {
-            text-align: center;
-            margin-right: 60px;
+            margin-top: 10px;
+            width: 100%;
         }
-
-        .header-items {
-            display: flex;
-            align-items: center;
-        }
-
 
         .videos-mais-acessados-header h2 {
-            font-size: 20px;
-            color: hsl(0, 40%, 98%);
+            font-size: 18px;
+            color: white;
             margin-bottom: 5px;
-            font-family: 'italico', Times, serif;
-            margin-right: 10px; /* Espaçamento entre os títulos */
         }
 
         .videos-mais-acessados-header ul {
             list-style: none;
-            padding: 0;
-            margin: 0;
             display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .videos-mais-acessados-header li {
-            margin-right: 10px;                         /* espaçamento entre um botao e outro */
+            flex-wrap: wrap;
+            gap: 10px;
         }
 
         .videos-mais-acessados-header li a {
             text-decoration: none;
-            display: inline-block;
             padding: 5px 10px;
             border-radius: 20px;
             background-color: hwb(180 42% 5%);
             color: #000;
-            font-size: 15px;
-            transition: background-color 0.3s ease, color 0.3s ease;
-            background-image: url('');
-            background-size: cover;
-            background-position: center;
+            font-size: 14px;
+            transition: 0.3s;
         }
 
         .videos-mais-acessados-header li a:hover {
@@ -96,10 +78,11 @@
             color: #ffd700;
         }
 
-        /* Restante do estilo mantido */
         main {
-            position: relative;
-            height: calc(100vh - 0px);
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .background-image {
@@ -107,157 +90,155 @@
             background-size: cover;
             background-repeat: no-repeat;
             width: 100%;
-            height: 100%;
-            position: relative;
-            transform: scaleX(-1);
+            height: 60vh;
         }
 
         .botao-container {
-            position: absolute;
-            top: 60%;
-            left: 60px;
-            transform: translateY(-50%);
             display: flex;
-            flex-direction: column;
-            flex-shrink: 0;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
         }
 
         .botao {
-            font-family: 'Times New Roman', Times, serif, Helvetica, sans-serif;
-            font-size: 17px;
+            font-size: 16px;
             color: rgb(57, 209, 247);
-            background-color: rgb(0, 0, 0);
-            width: 260px;
-            height: 50px;
-            position: relative;
+            background-color: black;
+            width: 200px;
+            height: 45px;
             display: flex;
             align-items: center;
             justify-content: center;
-            cursor: pointer;
-            overflow: hidden;
-            border-radius: 17px;
-            margin-bottom: 28px;
             text-decoration: none;
-            box-shadow: 0px 5px 10px rgba(250, 248, 248, 0.5);
+            border-radius: 15px;
+            cursor: pointer;
         }
 
-        .botao:before {
-            content: "";
-            position: absolute;
-            left: 0px;
-            top: 0px;
-            width: 0;
-            height: 0;
-            border-top: 2px solid hwb(70 96% 2%);
-            border-right: 2px solid rgba(253, 253, 250, 0.938);
-            animation: border-top-right 3s infinite alternate;
+        section#duvidas {
+            width: 90%;
+            max-width: 1200px;
+            margin: 40px auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
 
-        .botao::after {
-            content: "";
-            position: absolute;
-            right: 0px;
-            bottom: 0px;
-            width: 0;
-            height: 0;
-            border-bottom: 2px solid hwb(60 99% 0%);
-            border-left: 2px solid rgba(253, 253, 250, 0.938);
-            animation: border-bottom-left 3s infinite alternate;
+        section#duvidas img {
+            width: 100%;
+            max-width: 450px;
+            height: auto;
+            margin-bottom: 20px;
         }
 
-        /* Restante do estilo mantido */
-        @keyframes border-top-right {
-            0% { width: 0; height: 0; }
-            50% { width: 200px; height: 0px; }
-            100% { width: 200px; height: 48px; }
+        .duvida {
+            background-color: #f1f1f1;
+            border-radius: 8px;
+            padding: 15px;
         }
 
-        @keyframes border-bottom-left {
-            0% { width: 0; height: 0; }
-            50% { width: 200px; height: 0px; }
-            100% { width: 200px; height: 48px; }
+        .duvida h3 {
+            font-size: 18px;
+            cursor: pointer;
+            margin-bottom: 8px;
         }
 
-        @media screen and (max-width: 600px) {
-            body {
-                font-size: 14px;
+        .duvida p {
+            display: none;
+            font-size: 16px;
+            margin-top: 5px;
+        }
+
+        .duvida.ativa p {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                justify-content: center;
+            }
+
+            .videos-mais-acessados-header ul {
+                justify-content: center;
+            }
+
+            .botao-container {
+                flex-direction: column;
+                align-items: center;
             }
         }
 
-        /* Restante do estilo mantido */
+        @media (max-width: 480px) {
+            nav ul li a {
+                font-size: 16px;
+            }
+
+            .videos-mais-acessados-header h2 {
+                font-size: 16px;
+            }
+
+            .videos-mais-acessados-header li a {
+                font-size: 12px;
+                padding: 4px 8px;
+            }
+
+            .botao {
+                width: 160px;
+                height: 40px;
+                font-size: 14px;
+            }
+        }
     </style>
 </head>
 <body>
-    <!-- Cabeçalho do Site -->
     <header>
         <div class="logo">
             <img src="Logo antenados.png" alt="Logo do Site">
         </div>
         <nav>
             <ul>
-               <li><a href="#"></a></li>
+                <li><a href="#"></a></li>
             </ul>
         </nav>
-
-        <!-- Seção de "Vídeos Mais Acessados" no cabeçalho -->
         <div class="videos-mais-acessados-header">
-            <div class="header-items">
             <h2>Dicas para iniciantes</h2>
             <ul>
-                <li><a href="https://www.youtube.com/watch?v=1EX9IJBYX60&list=PL4ITHPnJ4STiJDmDa0-pL8iZsYCQK2R6u" target="_blank">Logica de programação</a></li>
+                <li><a href="https://www.youtube.com/watch?v=1EX9IJBYX60&list=PL4ITHPnJ4STiJDmDa0-pL8iZsYCQK2R6u" target="_blank">Lógica de programação</a></li>
                 <li><a href="https://www.youtube.com/watch?v=22nd99SLgNA" target="_blank">Linguagens</a></li>
                 <li><a href="https://www.youtube.com/watch?v=APmtMvaYMLg" target="_blank">Tecnologia da Informação</a></li>
-                <!-- Adicione mais itens conforme necessário -->
             </ul>
         </div>
     </header>
 
-    <!-- Conteúdo Principal -->
     <main>
-        <!-- Imagem de Fundo -->
         <div class="background-image"></div>
-        <!-- Botões -->
         <div class="botao-container">
             <a href="i.a.html" class="botao" target="_blank">I.A</a>
-          <!--  <a href="url_para_Front_End" class="botao" target="_blank">Front End</a>  -->
             <a href="backend.html" class="botao" target="_blank">Back End</a>
             <a href="I.o.t.html" class="botao" target="_blank">I O T</a>
-            <a href="redes.html" class="botao" target="url_para_Redes">Redes</a>
+            <a href="redes.html" class="botao" target="_blank">Redes</a>
             <a href="Machine Learning.html" class="botao" target="_blank">Machine Learning</a>
+        </div>
     </main>
-            
-    <section id="duvidas" style="background-color: white; padding: 10px;">
-                    <img src="duvida.jpg" alt="" width="448" height="400"> 
-                    <div style="color: black(0, 33%, 99%);">
-                    <div>
-                        <h2>Ficou alguma duvida?</h2>
-                        <div class="duvida">
-                            <h3>Quem somos!</h3>
-                            <img src="arrow-down.svg" alt="">
-                         <p>Somos alunos de tecnologia da informação na instituição Uni9,nosso grupo é composto por 11 integrantes: Andressa,Breno,Claudinei ramos,Danielle,Guilherme,Gabriel,Higor,Jefersson,Pedro,Phelipe e Leonardo.
-                         </p>
-                        </div>
-        
-                        <div class="duvida">
-                            <h3>O que procuramos oferecer?</h3>
-                            <img src="arrow-down.svg" alt="">
-                         <p> Procuramos ajudar pessoas que tem interesse em tecnologia e nao sabe por onde começar,por isso criamos este canal de comunicação com pesquisas e videos de amplas areas de tecnologia para ajuda-los a encontrar a area em que deseja buscar os conhecimentos expecificos.
-                         </p>
-                        </div>
-        
-                        <div class="duvida">
-                            <h3>Envie sua sugestão!</h3>
-                            <img src="arrow-down.svg" alt="">
-                         <p>Ficaremos felizes em receber seu feedback ou em ajudar com alguma dúvida expecifica.
-                            claudineir@uni9.edu.br
-                         </p>
-                        </div>
-                         
-                       
-                    </div>
-        
-        
-                </section><!--final duvidas-->
-        <script src="index.js"></script>
- </body>
+
+    <section id="duvidas">
+        <img src="duvida.jpg" alt="">
+        <div>
+            <h2>Ficou alguma dúvida?</h2>
+            <div class="duvida">
+                <h3>Quem somos!</h3>
+                <p>Somos alunos de tecnologia da informação na instituição Uni9, nosso grupo é composto por 11 integrantes: Andressa, Breno, Claudinei Ramos, Danielle, Guilherme, Gabriel, Higor, Jefersson, Pedro, Phelipe e Leonardo.</p>
+            </div>
+            <div class="duvida">
+                <h3>O que procuramos oferecer?</h3>
+                <p>Procuramos ajudar pessoas que têm interesse em tecnologia e não sabem por onde começar, por isso criamos este canal de comunicação com pesquisas e vídeos de áreas diversas de tecnologia para ajudá-los a encontrar os conhecimentos específicos.</p>
+            </div>
+            <div class="duvida">
+                <h3>Envie sua sugestão!</h3>
+                <p>Ficaremos felizes em receber seu feedback ou em ajudar com alguma dúvida específica: claudineir@uni9.edu.br</p>
+            </div>
+        </div>
+    </section>
+    <script src="index.js"></script>
+</body>
 </html>
