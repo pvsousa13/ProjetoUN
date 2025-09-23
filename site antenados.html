@@ -1,478 +1,190 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <link rel="shortcut icon" href="A.png" type="image/x-icon">
-    <title>Antenados</title>
-    <link rel="stylesheet" href="index.css"> 
-    <style>
-        /* ------------------ Seu CSS existente (mantive) ------------------ */
-        header {
-            background-color: black; 
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px; 
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link rel="shortcut icon" href="A.png" type="image/x-icon">
+<title>Antenados</title>
+<link rel="stylesheet" href="index.css">
+<style>
+/* ===== Seu CSS original ===== */
+header { background-color: black; position: absolute; top: 0; left: 0; right: 0; z-index: 1; display: flex; justify-content: space-between; align-items: center; padding: 15px; }
+.logo img { width: 160px; height: auto; }
+nav ul { list-style: none; padding: 0; margin: 0; }
+nav ul li { display: inline; margin-right: 20px; }
+nav ul li a { text-decoration: none; color: white; font-family: 'Times New Roman', Times, serif; font-size: 30px; }
+.videos-mais-acessados-header { text-align: center; margin-right: 60px; }
+.header-items { display: flex; align-items: center; }
+.videos-mais-acessados-header h2 { font-size: 20px; color: hsl(0, 40%, 98%); margin-bottom: 5px; font-family: 'italico', Times, serif; margin-right: 10px; }
+.videos-mais-acessados-header ul { list-style: none; padding: 0; margin: 0; display: flex; justify-content: center; align-items: center; }
+.videos-mais-acessados-header li { margin-right: 10px; }
+.videos-mais-acessados-header li a { text-decoration: none; display: inline-block; padding: 5px 10px; border-radius: 20px; background-color: hwb(180 42% 5%); color: #000; font-size: 15px; transition: background-color 0.3s ease, color 0.3s ease; background-image: url(''); background-size: cover; background-position: center; }
+.videos-mais-acessados-header li a:hover { background-color: #000; color: #ffd700; }
+main { position: relative; height: calc(100vh - 0px); }
+.background-image { background-image: url('fundo02.jpg'); background-size: cover; background-repeat: no-repeat; width: 100%; height: 100%; position: relative; transform: scaleX(-1); }
+.botao-container { position: absolute; top: 60%; left: 60px; transform: translateY(-50%); display: flex; flex-direction: column; flex-shrink: 0; }
+.botao { font-family: 'Times New Roman', Times, serif, Helvetica, sans-serif; font-size: 17px; color: rgb(57, 209, 247); background-color: rgb(0, 0, 0); width: 260px; height: 50px; position: relative; display: flex; align-items: center; justify-content: center; cursor: pointer; overflow: hidden; border-radius: 17px; margin-bottom: 28px; text-decoration: none; box-shadow: 0px 5px 10px rgba(250, 248, 248, 0.5); }
+.botao:before { content: ""; position: absolute; left: 0px; top: 0px; width: 0; height: 0; border-top: 2px solid hwb(70 96% 2%); border-right: 2px solid rgba(253, 253, 250, 0.938); animation: border-top-right 3s infinite alternate; }
+.botao::after { content: ""; position: absolute; right: 0px; bottom: 0px; width: 0; height: 0; border-bottom: 2px solid hwb(60 99% 0%); border-left: 2px solid rgba(253, 253, 250, 0.938); animation: border-bottom-left 3s infinite alternate; }
+@keyframes border-top-right { 0% { width: 0; height: 0; } 50% { width: 200px; height: 0px; } 100% { width: 200px; height: 48px; } }
+@keyframes border-bottom-left { 0% { width: 0; height: 0; } 50% { width: 200px; height: 0px; } 100% { width: 200px; height: 48px; } }
+@media screen and (max-width: 600px) { body { font-size: 14px; } }
 
-        .logo img {
-            width: 160px;
-            height: auto;
-        }
+/* ===== Estilo do Chatbot ===== */
+#chatbot-toggle { position: fixed; bottom: 20px; right: 20px; background: #ffa500; /* laranja */ color: white; border: none; border-radius: 50%; width: 65px; height: 65px; font-size: 28px; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.3); display:flex; align-items:center; justify-content:center; z-index: 9999; }
+#ai-chat-modal{ position: fixed; right: 20px; bottom: 100px; width:360px; max-width: calc(100% - 40px); height:380px; background:#fff; border-radius:12px; box-shadow:0 12px 40px rgba(0,0,0,0.25); display:none; flex-direction:column; overflow:hidden; z-index:9999; }
+#ai-chat-header{ padding:12px; background:#0b3b91; color:#fff; display:flex; justify-content:space-between; align-items:center; gap:8px; }
+#ai-messages{ flex:1; padding:12px; overflow:auto; background: linear-gradient(#f6f8fc, #ffffff); }
+.ai-msg{ margin-bottom:12px; max-width:85%; padding:10px 12px; border-radius:10px; line-height:1.3; box-shadow: 0 1px 0 rgba(0,0,0,0.03); }
+.ai-msg.user{ background:#dfefff; margin-left:auto; text-align:right; }
+.ai-msg.bot{ background:#eef7ff; margin-right:auto; }
+#ai-input-row{ display:flex; gap:8px; padding:10px; border-top:1px solid #eee; }
+#ai-input{ flex:1; padding:10px; border-radius:8px; border:1px solid #ddd; font-size:14px; }
+#ai-send{ background:#0b3b91; color:#fff; border:none; padding:10px 12px; border-radius:8px; cursor:pointer; }
 
-        nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        nav ul li {
-            display: inline;
-            margin-right: 20px;
-        }
-
-        nav ul li a {
-            text-decoration: none;
-            color: white;
-            font-family: 'Times New Roman', Times, serif;
-            font-size: 30px;
-        }
-
-        .videos-mais-acessados-header {
-            text-align: center;
-            margin-right: 60px;
-        }
-
-        .header-items {
-            display: flex;
-            align-items: center;
-        }
-
-        .videos-mais-acessados-header h2 {
-            font-size: 20px;
-            color: hsl(0, 40%, 98%);
-            margin-bottom: 5px;
-            font-family: 'italico', Times, serif;
-            margin-right: 10px;
-        }
-
-        .videos-mais-acessados-header ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .videos-mais-acessados-header li {
-            margin-right: 10px;
-        }
-
-        .videos-mais-acessados-header li a {
-            text-decoration: none;
-            display: inline-block;
-            padding: 5px 10px;
-            border-radius: 20px;
-            background-color: hwb(180 42% 5%);
-            color: #000;
-            font-size: 15px;
-            transition: background-color 0.3s ease, color 0.3s ease;
-            background-image: url('');
-            background-size: cover;
-            background-position: center;
-        }
-
-        .videos-mais-acessados-header li a:hover {
-            background-color: #000;
-            color: #ffd700;
-        }
-
-        main {
-            position: relative;
-            height: calc(100vh - 0px);
-        }
-
-        .background-image {
-            background-image: url('fundo02.jpg');
-            background-size: cover;
-            background-repeat: no-repeat;
-            width: 100%;
-            height: 100%;
-            position: relative;
-            transform: scaleX(-1);
-        }
-
-        .botao-container {
-            position: absolute;
-            top: 60%;
-            left: 60px;
-            transform: translateY(-50%);
-            display: flex;
-            flex-direction: column;
-            flex-shrink: 0;
-        }
-
-        .botao {
-            font-family: 'Times New Roman', Times, serif, Helvetica, sans-serif;
-            font-size: 17px;
-            color: rgb(57, 209, 247);
-            background-color: rgb(0, 0, 0);
-            width: 260px;
-            height: 50px;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            overflow: hidden;
-            border-radius: 17px;
-            margin-bottom: 28px;
-            text-decoration: none;
-            box-shadow: 0px 5px 10px rgba(250, 248, 248, 0.5);
-        }
-
-        .botao:before {
-            content: "";
-            position: absolute;
-            left: 0px;
-            top: 0px;
-            width: 0;
-            height: 0;
-            border-top: 2px solid hwb(70 96% 2%);
-            border-right: 2px solid rgba(253, 253, 250, 0.938);
-            animation: border-top-right 3s infinite alternate;
-        }
-
-        .botao::after {
-            content: "";
-            position: absolute;
-            right: 0px;
-            bottom: 0px;
-            width: 0;
-            height: 0;
-            border-bottom: 2px solid hwb(60 99% 0%);
-            border-left: 2px solid rgba(253, 253, 250, 0.938);
-            animation: border-bottom-left 3s infinite alternate;
-        }
-
-        @keyframes border-top-right {
-            0% { width: 0; height: 0; }
-            50% { width: 200px; height: 0px; }
-            100% { width: 200px; height: 48px; }
-        }
-
-        @keyframes border-bottom-left {
-            0% { width: 0; height: 0; }
-            50% { width: 200px; height: 0px; }
-            100% { width: 200px; height: 48px; }
-        }
-
-        @media screen and (max-width: 600px) {
-            body {
-                font-size: 14px;
-            }
-        }
-
-        /* ------------------ Estilos do assistente offline (integrado) ------------------ */
-        /* botao flutuante */
-        #ai-widget-btn{
-            position: fixed;
-            right: 20px;
-            bottom: 20px;
-            width: 64px;
-            height: 64px;
-            border-radius: 50%;
-            background: linear-gradient(135deg,#00c2ff,#0b3b91);
-            color: #fff;
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            font-size: 28px;
-            cursor:pointer;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-            z-index: 9999;
-        }
-
-        /* modal */
-        #ai-chat-modal{
-          position: fixed;
-          right: 20px;
-          bottom: 100px;
-          width: 360px;
-          max-width: calc(100% - 40px);
-          height: 520px;
-          background: #fff;
-          border-radius: 12px;
-          box-shadow: 0 10px 50px rgba(0,0,0,0.25);
-          display: none;
-          flex-direction: column;
-          overflow: hidden;
-          z-index: 9999;
-          font-family: Arial, Helvetica, sans-serif;
-        }
-        #ai-chat-header{
-          padding: 12px;
-          background: #0b3b91;
-          color: #fff;
-          display:flex;
-          justify-content:space-between;
-          align-items:center;
-        }
-        #ai-messages{ flex:1; padding: 12px; overflow:auto; background: #f6f8fc;}
-        .ai-msg { margin-bottom: 12px; max-width: 85%; padding: 10px 12px; border-radius: 10px; line-height:1.3;}
-        .ai-msg.user { background: #dfefff; margin-left: auto; text-align: right;}
-        .ai-msg.bot { background: #eef7ff; margin-right: auto;}
-        #ai-input-row { display:flex; gap:8px; padding: 10px; border-top: 1px solid #eee; }
-        #ai-input { flex:1; padding:10px; border-radius:8px; border:1px solid #ddd; font-size:14px;}
-        #ai-send { background:#0b3b91; color:#fff; border:none; padding: 10px 12px; border-radius:8px; cursor:pointer;}
-        #faq-editor{ padding:8px; border-top:1px solid #eee; background:#fafafa; font-size:13px;}
-        #faq-list{ max-height:120px; overflow:auto; margin-top:6px;}
-        .faq-item{ padding:6px; border-bottom:1px solid #eee;}
-        .faq-key{ font-weight:600;}
-        #ai-clear, #ai-close { background: transparent; color: #fff; border: none; cursor: pointer; padding:4px 8px; font-size:14px; }
-        #ai-clear { color: #fff; background: rgba(255,255,255,0.08); border-radius:6px; }
-        /* botão excluir FAQ */
-        .faq-item button { float:right; background:#ff4d4d; color:#fff; border:none; padding:4px 8px; border-radius:6px; cursor:pointer; }
-        .ai-small { font-size:12px; opacity:0.9; margin-left:8px; }
-    </style>
+/* perguntas rápidas */
+.quick-questions{ display:flex; gap:8px; flex-wrap:wrap; padding:8px; background:#f6f8fc; border-top:1px solid #ddd; }
+.quick-btn{ background:#eef7ff; color:#0b3b91; padding:6px 10px; border-radius:8px; cursor:pointer; border:1px solid transparent; font-size:13px; }
+.quick-btn:hover{ background:#d0e4ff; }
+</style>
 </head>
 <body>
-    <!-- Cabeçalho do Site -->
-    <header>
-        <div class="logo">
-            <img src="Logo antenados.png" alt="Logo do Site">
-        </div>
-        <nav>
-            <ul>
-               <li><a href="#"></a></li>
-            </ul>
-        </nav>
-
-        <!-- Seção de "Vídeos Mais Acessados" no cabeçalho -->
-        <div class="videos-mais-acessados-header">
-            <div class="header-items">
+<header>
+    <div class="logo"><img src="Logo antenados.png" alt="Logo do Site"></div>
+    <nav><ul><li><a href="#"></a></li></ul></nav>
+    <div class="videos-mais-acessados-header">
+        <div class="header-items">
             <h2>Dicas para iniciantes</h2>
             <ul>
                 <li><a href="https://www.youtube.com/watch?v=1EX9IJBYX60&list=PL4ITHPnJ4STiJDmDa0-pL8iZsYCQK2R6u" target="_blank">Logica de programação</a></li>
                 <li><a href="https://www.youtube.com/watch?v=22nd99SLgNA" target="_blank">Linguagens</a></li>
                 <li><a href="https://www.youtube.com/watch?v=APmtMvaYMLg" target="_blank">Tecnologia da Informação</a></li>
-                <!-- Adicione mais itens conforme necessário -->
             </ul>
         </div>
-    </header>
-
-    <!-- Conteúdo Principal -->
-    <main>
-        <!-- Imagem de Fundo -->
-        <div class="background-image"></div>
-        <!-- Botões -->
-        <div class="botao-container">
-            <a href="i.a.html" class="botao" target="_blank">I.A</a>
-            <a href="backend.html" class="botao" target="_blank">Back End</a>
-            <a href="I.o.t.html" class="botao" target="_blank">I O T</a>
-            <a href="redes.html" class="botao" target="url_para_Redes">Redes</a>
-            <a href="Machine Learning.html" class="botao" target="_blank">Machine Learning</a>
-        </div>
-    </main>
-            
-    <section id="duvidas" style="background-color: white; padding: 10px;">
-        <img src="duvida.jpg" alt="Descrição da imagem" class="responsive-img"> 
-        <div style="color: black(0, 33%, 99%);">
-            <div>
-                <h2>Ficou alguma duvida?</h2>
-                <div class="duvida">
-                    <h3>Quem somos!</h3>
-                    <img src="arrow-down.svg" alt="">
-                    <p>Somos alunos de tecnologia da informação na instituição Uni9,nosso grupo é composto por: Andressa,Claudinei,Danielle,Jefersson,Pedro,Leonardo.
-                    </p>
-                </div>
-
-                <div class="duvida">
-                    <h3>O que procuramos oferecer?</h3>
-                    <img src="arrow-down.svg" alt="">
-                    <p> Procuramos ajudar pessoas que tem interesse em tecnologia e nao sabe por onde começar,por isso criamos este canal de comunicação com pesquisas e videos de amplas areas de tecnologia para ajuda-los a encontrar a area em que deseja buscar os conhecimentos expecificos.
-                    </p>
-                </div>
-
-                <div class="duvida">
-                    <h3>Envie sua sugestão!</h3>
-                    <img src="arrow-down.svg" alt="">
-                    <p>Ficaremos felizes em receber seu feedback ou em ajudar com alguma dúvida expecifica.
-                        claudineir@uni9.edu.br
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section><!--final duvidas-->
-
-    <!-- ================= Assistente offline integrado (gratuito) ================= -->
-    <div id="ai-widget-btn" title="Assistente de estudo">💬</div>
-
-    <div id="ai-chat-modal" role="dialog" aria-label="Assistente de estudo">
-      <div id="ai-chat-header">
-        <div>
-          <strong>Assistente Antenados (offline)</strong>
-          <div class="ai-small">Respostas a partir do FAQ — funciona sem internet</div>
-        </div>
-        <div style="display:flex; gap:8px; align-items:center">
-          <button id="ai-clear" title="Limpar">Limpar</button>
-          <button id="ai-close" title="Fechar">✕</button>
-        </div>
-      </div>
-
-      <div id="ai-messages" aria-live="polite"></div>
-
-      <div id="ai-input-row">
-        <input id="ai-input" placeholder="Pergunte algo (ex: explique ciclo da água)" />
-        <button id="ai-send">Enviar</button>
-      </div>
-
-      <!-- Editor simples de FAQ (para adicionar Q/A antes da apresentação) -->
-      <div id="faq-editor">
-        <div style="display:flex; gap:6px;">
-          <input id="faq-q" placeholder="Pergunta ex: O que é HTML?" style="flex:1; padding:6px; border:1px solid #ddd; border-radius:6px"/>
-          <input id="faq-a" placeholder="Resposta curta" style="flex:1; padding:6px; border:1px solid #ddd; border-radius:6px"/>
-          <button id="faq-add">Adicionar</button>
-        </div>
-        <div id="faq-list"></div>
-        <div style="margin-top:6px; font-size:12px; color:#666">As perguntas ficam salvas no navegador (localStorage) — funciona offline.</div>
-      </div>
     </div>
-    <!-- ================= fim assistente ================= -->
+</header>
 
-    <script>
-    /* Lógica do assistente offline - já pronta */
-    const btn = document.getElementById('ai-widget-btn');
-    const modal = document.getElementById('ai-chat-modal');
-    const closeBtn = document.getElementById('ai-close');
-    const sendBtn = document.getElementById('ai-send');
-    const input = document.getElementById('ai-input');
-    const messages = document.getElementById('ai-messages');
-    const clearBtn = document.getElementById('ai-clear');
+<main>
+    <div class="background-image"></div>
+    <div class="botao-container">
+        <a href="i.a.html" class="botao" target="_blank">I.A</a>
+        <a href="backend.html" class="botao" target="_blank">Back End</a>
+        <a href="I.o.t.html" class="botao" target="_blank">I O T</a>
+        <a href="redes.html" class="botao" target="_blank">Redes</a>
+        <a href="Machine Learning.html" class="botao" target="_blank">Machine Learning</a>
+    </div>
+</main>
 
-    const faqQ = document.getElementById('faq-q');
-    const faqA = document.getElementById('faq-a');
-    const faqAdd = document.getElementById('faq-add');
-    const faqList = document.getElementById('faq-list');
+<section id="duvidas" style="background-color: white; padding: 10px;">
+    <img src="duvida.jpg" alt="Descrição da imagem" class="responsive-img"> 
+    <div style="color: black;">
+        <h2>Ficou alguma dúvida?</h2>
+        <div class="duvida">
+            <h3>Quem somos!</h3>
+            <img src="arrow-down.svg" alt="">
+            <p>Somos alunos de tecnologia da informação na instituição Uni9. Nosso grupo é composto por: Andressa, Claudinei, Danielle, Jefersson, Pedro, Leonardo.</p>
+        </div>
+        <div class="duvida">
+            <h3>O que procuramos oferecer?</h3>
+            <img src="arrow-down.svg" alt="">
+            <p>Procuramos ajudar pessoas que têm interesse em tecnologia e não sabem por onde começar, por isso criamos este canal com pesquisas e vídeos de diversas áreas para ajudá-los.</p>
+        </div>
+        <div class="duvida">
+            <h3>Envie sua sugestão!</h3>
+            <img src="arrow-down.svg" alt="">
+            <p>Ficaremos felizes em receber seu feedback ou ajudar com alguma dúvida específica. claudineir@uni9.edu.br</p>
+        </div>
+    </div>
+</section>
 
-    btn.addEventListener('click', ()=> modal.style.display = 'flex');
-    closeBtn.addEventListener('click', ()=> modal.style.display = 'none');
-    clearBtn.addEventListener('click', ()=> messages.innerHTML = '');
+<!-- Botão Chatbot -->
+<button id="chatbot-toggle">🤖</button>
 
-    function appendMessage(text, who='bot'){
-      const el = document.createElement('div');
-      el.className = 'ai-msg ' + (who === 'user' ? 'user' : 'bot');
-      el.innerText = text;
-      messages.appendChild(el);
-      messages.scrollTop = messages.scrollHeight;
-    }
+<!-- Janela do Chatbot -->
+<div id="ai-chat-modal">
+    <div id="ai-chat-header">
+        <div><strong>Assistente Antenados</strong><div style="font-size:12px;opacity:0.9">FAQ offline</div></div>
+        <div style="display:flex; gap:6px; align-items:center;">
+            <button id="ai-clear" style="background:transparent; border:none; color:#fff; cursor:pointer;">Limpar</button>
+            <button id="ai-close" style="background:transparent; border:none; color:#fff; cursor:pointer;">✕</button>
+        </div>
+    </div>
+    <div id="ai-messages"></div>
 
-    /* --- FAQ storage and simple search --- */
-    const FAQ_KEY = 'antenados_faq_v1';
+    <!-- Perguntas rápidas -->
+    <div class="quick-questions">
+        <button class="quick-btn">O que é IA?</button>
+        <button class="quick-btn">Como aprender lógica de programação?</button>
+        <button class="quick-btn">Quais linguagens são mais usadas?</button>
+        <button class="quick-btn">Onde encontrar pesquisas sobre ML?</button>
+    </div>
 
-    function defaultFAQ(){
-      return [
-        {q: 'O que é HTML?', a: 'HTML é a linguagem de marcação usada para estruturar páginas web.'},
-        {q: 'O que é CSS?',  a: 'CSS é a linguagem de estilos que define a aparência de elementos HTML.'},
-        {q: 'O que é JavaScript?', a: 'JavaScript é a linguagem que adiciona interatividade às páginas web.'},
-        {q: 'Como estudar lógica de programação?', a: 'Comece com variáveis, condições, laços e prática com pequenos exercícios.'}
-      ];
-    }
+    <div id="ai-input-row">
+        <input id="ai-input" placeholder="Pergunte algo..." />
+        <button id="ai-send">Enviar</button>
+    </div>
+</div>
 
-    function loadFAQ(){
-      try{
-        const raw = localStorage.getItem(FAQ_KEY);
-        if(!raw) return defaultFAQ();
-        return JSON.parse(raw);
-      }catch(e){ return defaultFAQ(); }
-    }
+<script>
+// ===== Script Chatbot =====
+const btn = document.getElementById('chatbot-toggle');
+const modal = document.getElementById('ai-chat-modal');
+const closeBtn = document.getElementById('ai-close');
+const clearBtn = document.getElementById('ai-clear');
+const sendBtn = document.getElementById('ai-send');
+const input = document.getElementById('ai-input');
+const messages = document.getElementById('ai-messages');
 
-    function saveFAQ(arr){
-      localStorage.setItem(FAQ_KEY, JSON.stringify(arr));
-    }
+const FAQ = [
+    {q:'O que é IA?', a:'Inteligência Artificial (IA) é um campo que cria sistemas capazes de aprender e tomar decisões inteligentes.'},
+    {q:'Como aprender lógica de programação?', a:'Comece com variáveis, condicionais, loops. Sites como Codecademy e freeCodeCamp ajudam bastante.'},
+    {q:'Quais linguagens são mais usadas?', a:'Python, JavaScript, Java e C# são populares para desenvolvimento e automação.'},
+    {q:'Onde encontrar pesquisas sobre ML?', a:'Google Scholar, ArXiv, Coursera e Udemy oferecem ótimos materiais de pesquisa.'}
+];
 
-    function renderFAQ(){
-      const arr = loadFAQ();
-      faqList.innerHTML = '';
-      arr.forEach((item, idx)=>{
-        const div = document.createElement('div');
-        div.className = 'faq-item';
-        div.innerHTML = `<div class="faq-key">${item.q}</div><div style="font-size:13px; color:#333">${item.a}</div>`;
-        const del = document.createElement('button');
-        del.textContent='Excluir';
-        del.addEventListener('click', ()=> {
-          arr.splice(idx,1); saveFAQ(arr); renderFAQ();
-        });
-        div.appendChild(del);
-        faqList.appendChild(div);
-      });
-    }
+function appendBot(txt){
+    const el = document.createElement('div');
+    el.className='ai-msg bot';
+    el.innerText=txt;
+    messages.appendChild(el);
+    messages.scrollTop=messages.scrollHeight;
+}
 
-    faqAdd.addEventListener('click', ()=>{
-      const q = faqQ.value.trim(); const a = faqA.value.trim();
-      if(!q || !a) return alert('Digite pergunta e resposta.');
-      const arr = loadFAQ();
-      arr.unshift({q,a});
-      saveFAQ(arr);
-      faqQ.value=''; faqA.value='';
-      renderFAQ();
+function appendUser(txt){
+    const el = document.createElement('div');
+    el.className='ai-msg user';
+    el.innerText=txt;
+    messages.appendChild(el);
+    messages.scrollTop=messages.scrollHeight;
+}
+
+function send(){
+    const text = input.value.trim();
+    if(!text) return;
+    appendUser(text);
+    input.value='';
+    const found = FAQ.find(f=>f.q.toLowerCase()===text.toLowerCase());
+    if(found) appendBot(found.a);
+    else appendBot('Desculpe, não sei responder. Pergunta será adicionada futuramente.');
+}
+
+// Abrir e fechar chatbot
+btn.onclick = ()=>{
+    modal.style.display='flex';
+    appendBot('Olá! Sou o Assistente Antenados. Clique em uma pergunta rápida ou digite sua dúvida.');
+};
+closeBtn.onclick = ()=> modal.style.display='none';
+clearBtn.onclick = ()=> messages.innerHTML='';
+sendBtn.onclick = send;
+input.addEventListener('keydown', e=>{ if(e.key==='Enter') send(); });
+
+// Perguntas rápidas
+document.querySelectorAll('.quick-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+        input.value = btn.innerText;
+        send();
     });
-
-    /* similarity: conta quantas palavras em comum (método simples, robusto para demo) */
-    function simpleSearch(question){
-      const arr = loadFAQ();
-      const qLower = question.toLowerCase().replace(/[^\w\s]/g,'');
-      const qWords = qLower.split(/\s+/).filter(Boolean);
-      let best = null; let bestScore = 0;
-      arr.forEach(item=>{
-        const text = (item.q+' '+item.a).toLowerCase();
-        let score = 0;
-        qWords.forEach(w => { if(text.includes(w)) score++; });
-        if(text.includes(qLower)) score += 2;
-        if(score > bestScore){ bestScore = score; best = item; }
-      });
-      return {best, score: bestScore};
-    }
-
-    /* send message using local FAQ */
-    async function sendMessage(){
-      const text = input.value.trim();
-      if(!text) return;
-      appendMessage(text,'user');
-      input.value = '';
-      appendMessage('Procurando resposta...','bot');
-
-      // pequena espera para simular "processamento"
-      await new Promise(r=>setTimeout(r, 450));
-
-      // busca simples
-      const {best, score} = simpleSearch(text);
-
-      // remover último "Procurando"
-      const bots = messages.querySelectorAll('.ai-msg.bot');
-      if(bots.length) bots[bots.length-1].remove();
-
-      if(best && score > 0){
-        appendMessage(best.a, 'bot');
-      } else {
-        appendMessage("Desculpe, não encontrei uma resposta pronta. Tente reformular com palavras-chave ou adicione a pergunta no editor abaixo para demonstrar.", 'bot');
-      }
-    }
-
-    sendBtn.addEventListener('click', sendMessage);
-    input.addEventListener('keydown', (e)=> { if(e.key === 'Enter') sendMessage(); });
-
-    /* inicializa FAQ e lista */
-    renderFAQ();
-    </script>
-
-    <script src="index.js"></script>
+});
+</script>
 </body>
 </html>
