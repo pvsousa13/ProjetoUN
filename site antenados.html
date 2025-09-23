@@ -7,14 +7,13 @@
     <title>Antenados</title>
     <link rel="stylesheet" href="index.css"> 
     <style>
-        /* Estilos para o cabeçalho */
+        /* ------------------ Seu CSS existente (mantive) ------------------ */
         header {
             background-color: black; 
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
-
             z-index: 1;
             display: flex;
             justify-content: space-between;
@@ -45,7 +44,6 @@
             font-size: 30px;
         }
 
-        /* Estilos para a seção de "Vídeos Mais Acessados" no cabeçalho */
         .videos-mais-acessados-header {
             text-align: center;
             margin-right: 60px;
@@ -56,13 +54,12 @@
             align-items: center;
         }
 
-
         .videos-mais-acessados-header h2 {
             font-size: 20px;
             color: hsl(0, 40%, 98%);
             margin-bottom: 5px;
             font-family: 'italico', Times, serif;
-            margin-right: 10px; /* Espaçamento entre os títulos */
+            margin-right: 10px;
         }
 
         .videos-mais-acessados-header ul {
@@ -75,7 +72,7 @@
         }
 
         .videos-mais-acessados-header li {
-            margin-right: 10px;                         /* espaçamento entre um botao e outro */
+            margin-right: 10px;
         }
 
         .videos-mais-acessados-header li a {
@@ -97,7 +94,6 @@
             color: #ffd700;
         }
 
-        /* Restante do estilo mantido */
         main {
             position: relative;
             height: calc(100vh - 0px);
@@ -166,7 +162,6 @@
             animation: border-bottom-left 3s infinite alternate;
         }
 
-        /* Restante do estilo mantido */
         @keyframes border-top-right {
             0% { width: 0; height: 0; }
             50% { width: 200px; height: 0px; }
@@ -185,7 +180,67 @@
             }
         }
 
-        /* Restante do estilo mantido */
+        /* ------------------ Estilos do assistente offline (integrado) ------------------ */
+        /* botao flutuante */
+        #ai-widget-btn{
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: linear-gradient(135deg,#00c2ff,#0b3b91);
+            color: #fff;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-size: 28px;
+            cursor:pointer;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            z-index: 9999;
+        }
+
+        /* modal */
+        #ai-chat-modal{
+          position: fixed;
+          right: 20px;
+          bottom: 100px;
+          width: 360px;
+          max-width: calc(100% - 40px);
+          height: 520px;
+          background: #fff;
+          border-radius: 12px;
+          box-shadow: 0 10px 50px rgba(0,0,0,0.25);
+          display: none;
+          flex-direction: column;
+          overflow: hidden;
+          z-index: 9999;
+          font-family: Arial, Helvetica, sans-serif;
+        }
+        #ai-chat-header{
+          padding: 12px;
+          background: #0b3b91;
+          color: #fff;
+          display:flex;
+          justify-content:space-between;
+          align-items:center;
+        }
+        #ai-messages{ flex:1; padding: 12px; overflow:auto; background: #f6f8fc;}
+        .ai-msg { margin-bottom: 12px; max-width: 85%; padding: 10px 12px; border-radius: 10px; line-height:1.3;}
+        .ai-msg.user { background: #dfefff; margin-left: auto; text-align: right;}
+        .ai-msg.bot { background: #eef7ff; margin-right: auto;}
+        #ai-input-row { display:flex; gap:8px; padding: 10px; border-top: 1px solid #eee; }
+        #ai-input { flex:1; padding:10px; border-radius:8px; border:1px solid #ddd; font-size:14px;}
+        #ai-send { background:#0b3b91; color:#fff; border:none; padding: 10px 12px; border-radius:8px; cursor:pointer;}
+        #faq-editor{ padding:8px; border-top:1px solid #eee; background:#fafafa; font-size:13px;}
+        #faq-list{ max-height:120px; overflow:auto; margin-top:6px;}
+        .faq-item{ padding:6px; border-bottom:1px solid #eee;}
+        .faq-key{ font-weight:600;}
+        #ai-clear, #ai-close { background: transparent; color: #fff; border: none; cursor: pointer; padding:4px 8px; font-size:14px; }
+        #ai-clear { color: #fff; background: rgba(255,255,255,0.08); border-radius:6px; }
+        /* botão excluir FAQ */
+        .faq-item button { float:right; background:#ff4d4d; color:#fff; border:none; padding:4px 8px; border-radius:6px; cursor:pointer; }
+        .ai-small { font-size:12px; opacity:0.9; margin-left:8px; }
     </style>
 </head>
 <body>
@@ -220,45 +275,204 @@
         <!-- Botões -->
         <div class="botao-container">
             <a href="i.a.html" class="botao" target="_blank">I.A</a>
-          <!--  <a href="url_para_Front_End" class="botao" target="_blank">Front End</a>  -->
             <a href="backend.html" class="botao" target="_blank">Back End</a>
             <a href="I.o.t.html" class="botao" target="_blank">I O T</a>
             <a href="redes.html" class="botao" target="url_para_Redes">Redes</a>
             <a href="Machine Learning.html" class="botao" target="_blank">Machine Learning</a>
+        </div>
     </main>
             
     <section id="duvidas" style="background-color: white; padding: 10px;">
-                    <img src="duvida.jpg" alt="Descrição da imagem" class="responsive-img"> 
-                    <div style="color: black(0, 33%, 99%);">
-                    <div>
-                        <h2>Ficou alguma duvida?</h2>
-                        <div class="duvida">
-                            <h3>Quem somos!</h3>
-                            <img src="arrow-down.svg" alt="">
-                         <p>Somos alunos de tecnologia da informação na instituição Uni9,nosso grupo é composto por: Andressa,Claudinei,Danielle,Jefersson,Pedro,Leonardo.
-                         </p>
-                        </div>
-        
-                        <div class="duvida">
-                            <h3>O que procuramos oferecer?</h3>
-                            <img src="arrow-down.svg" alt="">
-                         <p> Procuramos ajudar pessoas que tem interesse em tecnologia e nao sabe por onde começar,por isso criamos este canal de comunicação com pesquisas e videos de amplas areas de tecnologia para ajuda-los a encontrar a area em que deseja buscar os conhecimentos expecificos.
-                         </p>
-                        </div>
-        
-                        <div class="duvida">
-                            <h3>Envie sua sugestão!</h3>
-                            <img src="arrow-down.svg" alt="">
-                         <p>Ficaremos felizes em receber seu feedback ou em ajudar com alguma dúvida expecifica.
-                            claudineir@uni9.edu.br
-                         </p>
-                        </div>
-                         
-                       
-                    </div>
-        
-        
-                </section><!--final duvidas-->
-        <script src="index.js"></script>
- </body>
+        <img src="duvida.jpg" alt="Descrição da imagem" class="responsive-img"> 
+        <div style="color: black(0, 33%, 99%);">
+            <div>
+                <h2>Ficou alguma duvida?</h2>
+                <div class="duvida">
+                    <h3>Quem somos!</h3>
+                    <img src="arrow-down.svg" alt="">
+                    <p>Somos alunos de tecnologia da informação na instituição Uni9,nosso grupo é composto por: Andressa,Claudinei,Danielle,Jefersson,Pedro,Leonardo.
+                    </p>
+                </div>
+
+                <div class="duvida">
+                    <h3>O que procuramos oferecer?</h3>
+                    <img src="arrow-down.svg" alt="">
+                    <p> Procuramos ajudar pessoas que tem interesse em tecnologia e nao sabe por onde começar,por isso criamos este canal de comunicação com pesquisas e videos de amplas areas de tecnologia para ajuda-los a encontrar a area em que deseja buscar os conhecimentos expecificos.
+                    </p>
+                </div>
+
+                <div class="duvida">
+                    <h3>Envie sua sugestão!</h3>
+                    <img src="arrow-down.svg" alt="">
+                    <p>Ficaremos felizes em receber seu feedback ou em ajudar com alguma dúvida expecifica.
+                        claudineir@uni9.edu.br
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section><!--final duvidas-->
+
+    <!-- ================= Assistente offline integrado (gratuito) ================= -->
+    <div id="ai-widget-btn" title="Assistente de estudo">💬</div>
+
+    <div id="ai-chat-modal" role="dialog" aria-label="Assistente de estudo">
+      <div id="ai-chat-header">
+        <div>
+          <strong>Assistente Antenados (offline)</strong>
+          <div class="ai-small">Respostas a partir do FAQ — funciona sem internet</div>
+        </div>
+        <div style="display:flex; gap:8px; align-items:center">
+          <button id="ai-clear" title="Limpar">Limpar</button>
+          <button id="ai-close" title="Fechar">✕</button>
+        </div>
+      </div>
+
+      <div id="ai-messages" aria-live="polite"></div>
+
+      <div id="ai-input-row">
+        <input id="ai-input" placeholder="Pergunte algo (ex: explique ciclo da água)" />
+        <button id="ai-send">Enviar</button>
+      </div>
+
+      <!-- Editor simples de FAQ (para adicionar Q/A antes da apresentação) -->
+      <div id="faq-editor">
+        <div style="display:flex; gap:6px;">
+          <input id="faq-q" placeholder="Pergunta ex: O que é HTML?" style="flex:1; padding:6px; border:1px solid #ddd; border-radius:6px"/>
+          <input id="faq-a" placeholder="Resposta curta" style="flex:1; padding:6px; border:1px solid #ddd; border-radius:6px"/>
+          <button id="faq-add">Adicionar</button>
+        </div>
+        <div id="faq-list"></div>
+        <div style="margin-top:6px; font-size:12px; color:#666">As perguntas ficam salvas no navegador (localStorage) — funciona offline.</div>
+      </div>
+    </div>
+    <!-- ================= fim assistente ================= -->
+
+    <script>
+    /* Lógica do assistente offline - já pronta */
+    const btn = document.getElementById('ai-widget-btn');
+    const modal = document.getElementById('ai-chat-modal');
+    const closeBtn = document.getElementById('ai-close');
+    const sendBtn = document.getElementById('ai-send');
+    const input = document.getElementById('ai-input');
+    const messages = document.getElementById('ai-messages');
+    const clearBtn = document.getElementById('ai-clear');
+
+    const faqQ = document.getElementById('faq-q');
+    const faqA = document.getElementById('faq-a');
+    const faqAdd = document.getElementById('faq-add');
+    const faqList = document.getElementById('faq-list');
+
+    btn.addEventListener('click', ()=> modal.style.display = 'flex');
+    closeBtn.addEventListener('click', ()=> modal.style.display = 'none');
+    clearBtn.addEventListener('click', ()=> messages.innerHTML = '');
+
+    function appendMessage(text, who='bot'){
+      const el = document.createElement('div');
+      el.className = 'ai-msg ' + (who === 'user' ? 'user' : 'bot');
+      el.innerText = text;
+      messages.appendChild(el);
+      messages.scrollTop = messages.scrollHeight;
+    }
+
+    /* --- FAQ storage and simple search --- */
+    const FAQ_KEY = 'antenados_faq_v1';
+
+    function defaultFAQ(){
+      return [
+        {q: 'O que é HTML?', a: 'HTML é a linguagem de marcação usada para estruturar páginas web.'},
+        {q: 'O que é CSS?',  a: 'CSS é a linguagem de estilos que define a aparência de elementos HTML.'},
+        {q: 'O que é JavaScript?', a: 'JavaScript é a linguagem que adiciona interatividade às páginas web.'},
+        {q: 'Como estudar lógica de programação?', a: 'Comece com variáveis, condições, laços e prática com pequenos exercícios.'}
+      ];
+    }
+
+    function loadFAQ(){
+      try{
+        const raw = localStorage.getItem(FAQ_KEY);
+        if(!raw) return defaultFAQ();
+        return JSON.parse(raw);
+      }catch(e){ return defaultFAQ(); }
+    }
+
+    function saveFAQ(arr){
+      localStorage.setItem(FAQ_KEY, JSON.stringify(arr));
+    }
+
+    function renderFAQ(){
+      const arr = loadFAQ();
+      faqList.innerHTML = '';
+      arr.forEach((item, idx)=>{
+        const div = document.createElement('div');
+        div.className = 'faq-item';
+        div.innerHTML = `<div class="faq-key">${item.q}</div><div style="font-size:13px; color:#333">${item.a}</div>`;
+        const del = document.createElement('button');
+        del.textContent='Excluir';
+        del.addEventListener('click', ()=> {
+          arr.splice(idx,1); saveFAQ(arr); renderFAQ();
+        });
+        div.appendChild(del);
+        faqList.appendChild(div);
+      });
+    }
+
+    faqAdd.addEventListener('click', ()=>{
+      const q = faqQ.value.trim(); const a = faqA.value.trim();
+      if(!q || !a) return alert('Digite pergunta e resposta.');
+      const arr = loadFAQ();
+      arr.unshift({q,a});
+      saveFAQ(arr);
+      faqQ.value=''; faqA.value='';
+      renderFAQ();
+    });
+
+    /* similarity: conta quantas palavras em comum (método simples, robusto para demo) */
+    function simpleSearch(question){
+      const arr = loadFAQ();
+      const qLower = question.toLowerCase().replace(/[^\w\s]/g,'');
+      const qWords = qLower.split(/\s+/).filter(Boolean);
+      let best = null; let bestScore = 0;
+      arr.forEach(item=>{
+        const text = (item.q+' '+item.a).toLowerCase();
+        let score = 0;
+        qWords.forEach(w => { if(text.includes(w)) score++; });
+        if(text.includes(qLower)) score += 2;
+        if(score > bestScore){ bestScore = score; best = item; }
+      });
+      return {best, score: bestScore};
+    }
+
+    /* send message using local FAQ */
+    async function sendMessage(){
+      const text = input.value.trim();
+      if(!text) return;
+      appendMessage(text,'user');
+      input.value = '';
+      appendMessage('Procurando resposta...','bot');
+
+      // pequena espera para simular "processamento"
+      await new Promise(r=>setTimeout(r, 450));
+
+      // busca simples
+      const {best, score} = simpleSearch(text);
+
+      // remover último "Procurando"
+      const bots = messages.querySelectorAll('.ai-msg.bot');
+      if(bots.length) bots[bots.length-1].remove();
+
+      if(best && score > 0){
+        appendMessage(best.a, 'bot');
+      } else {
+        appendMessage("Desculpe, não encontrei uma resposta pronta. Tente reformular com palavras-chave ou adicione a pergunta no editor abaixo para demonstrar.", 'bot');
+      }
+    }
+
+    sendBtn.addEventListener('click', sendMessage);
+    input.addEventListener('keydown', (e)=> { if(e.key === 'Enter') sendMessage(); });
+
+    /* inicializa FAQ e lista */
+    renderFAQ();
+    </script>
+
+    <script src="index.js"></script>
+</body>
 </html>
