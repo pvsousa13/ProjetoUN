@@ -31,9 +31,9 @@ main { position: relative; height: calc(100vh - 0px); }
 @media screen and (max-width: 600px) { body { font-size: 14px; } }
 
 /* ===== Estilo do Chatbot ===== */
-#chatbot-toggle { position: fixed; bottom: 20px; right: 20px; background: #ffa500; /* laranja */ color: white; border: none; border-radius: 50%; width: 65px; height: 65px; font-size: 28px; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.3); display:flex; align-items:center; justify-content:center; z-index: 9999; }
+#chatbot-toggle { position: fixed; bottom: 40px; right: 40px; background: hsl(60, 20%, 99%); /* laranja */ color: white; border: none; border-radius: 50%; width: 65px; height: 65px; font-size: 28px; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.3); display:flex; align-items:center; justify-content:center; z-index: 9999; }
 #ai-chat-modal{ position: fixed; right: 20px; bottom: 100px; width:360px; max-width: calc(100% - 40px); height:380px; background:#fff; border-radius:12px; box-shadow:0 12px 40px rgba(0,0,0,0.25); display:none; flex-direction:column; overflow:hidden; z-index:9999; }
-#ai-chat-header{ padding:12px; background:#0b3b91; color:#fff; display:flex; justify-content:space-between; align-items:center; gap:8px; }
+#ai-chat-header{ padding:12px; background:#24c6f3; color:#fff; display:flex; justify-content:space-between; align-items:center; gap:8px; }
 #ai-messages{ flex:1; padding:12px; overflow:auto; background: linear-gradient(#f6f8fc, #ffffff); }
 .ai-msg{ margin-bottom:12px; max-width:85%; padding:10px 12px; border-radius:10px; line-height:1.3; box-shadow: 0 1px 0 rgba(0,0,0,0.03); }
 .ai-msg.user{ background:#dfefff; margin-left:auto; text-align:right; }
@@ -81,7 +81,7 @@ main { position: relative; height: calc(100vh - 0px); }
 <!-- Janela do Chatbot -->
 <div id="ai-chat-modal">
     <div id="ai-chat-header">
-        <div><strong>Assistente Antenados</strong><div style="font-size:12px;opacity:0.9">FAQ offline</div></div>
+        <div><strong>Assistente Antenados</strong><div style="font-size:12px;opacity:0.9"></div></div>
         <div style="display:flex; gap:6px; align-items:center;">
             <button id="ai-clear" style="background:transparent; border:none; color:#fff; cursor:pointer;">Limpar</button>
             <button id="ai-close" style="background:transparent; border:none; color:#fff; cursor:pointer;">✕</button>
