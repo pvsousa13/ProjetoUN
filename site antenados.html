@@ -30,10 +30,37 @@ main { position: relative; height: calc(100vh - 0px); }
 @keyframes border-bottom-left { 0% { width: 0; height: 0; } 50% { width: 200px; height: 0px; } 100% { width: 200px; height: 48px; } }
 @media screen and (max-width: 600px) { body { font-size: 14px; } }
 
-/* ===== Estilo do Chatbot ===== */
-#chatbot-toggle { position: fixed; bottom: 40px; right: 40px; background: hsl(60, 20%, 99%); /* laranja */ color: white; border: none; border-radius: 50%; width: 65px; height: 65px; font-size: 28px; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.3); display:flex; align-items:center; justify-content:center; z-index: 9999; }
+#chatbot-toggle {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    background: white;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 65px;
+    height: 65px;
+    font-size: 28px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index: 9999;
+    animation: chat-pulse-light 2.6s infinite ease-in-out;
+}
+#chatbot-toggle:hover {
+    animation: none;
+    transform: scale(1.1);
+}
+@keyframes chat-pulse-light {
+    0%   { box-shadow: 0 4px 10px rgba(0,0,0,0.3), 0 0 0 0 rgba(255,215,0,0); transform: scale(1); }
+    50%  { box-shadow: 0 8px 20px rgba(0,0,0,0.4), 0 0 15px 5px rgba(255,215,0,0.2); transform: scale(1.3); }
+    100% { box-shadow: 0 4px 10px rgba(0,0,0,0.3), 0 0 0 0 rgba(255,215,0,0); transform: scale(1); }
+}
+
 #ai-chat-modal{ position: fixed; right: 20px; bottom: 100px; width:360px; max-width: calc(100% - 40px); height:380px; background:#fff; border-radius:12px; box-shadow:0 12px 40px rgba(0,0,0,0.25); display:none; flex-direction:column; overflow:hidden; z-index:9999; }
-#ai-chat-header{ padding:12px; background:#24c6f3; color:#fff; display:flex; justify-content:space-between; align-items:center; gap:8px; }
+#ai-chat-header{ padding:12px; background:#24c6f3; color:#ffffff; display:flex; justify-content:space-between; align-items:center; gap:8px; }
 #ai-messages{ flex:1; padding:12px; overflow:auto; background: linear-gradient(#f6f8fc, #ffffff); }
 .ai-msg{ margin-bottom:12px; max-width:85%; padding:10px 12px; border-radius:10px; line-height:1.3; box-shadow: 0 1px 0 rgba(0,0,0,0.03); }
 .ai-msg.user{ background:#dfefff; margin-left:auto; text-align:right; }
@@ -41,8 +68,6 @@ main { position: relative; height: calc(100vh - 0px); }
 #ai-input-row{ display:flex; gap:8px; padding:10px; border-top:1px solid #eee; }
 #ai-input{ flex:1; padding:10px; border-radius:8px; border:1px solid #ddd; font-size:14px; }
 #ai-send{ background:#0b3b91; color:#fff; border:none; padding:10px 12px; border-radius:8px; cursor:pointer; }
-
-/* perguntas rápidas */
 .quick-questions{ display:flex; gap:8px; flex-wrap:wrap; padding:8px; background:#f6f8fc; border-top:1px solid #ddd; }
 .quick-btn{ background:#eef7ff; color:#0b3b91; padding:6px 10px; border-radius:8px; cursor:pointer; border:1px solid transparent; font-size:13px; }
 .quick-btn:hover{ background:#d0e4ff; }
@@ -75,13 +100,14 @@ main { position: relative; height: calc(100vh - 0px); }
     </div>
 </main>
 
+
 <!-- Botão Chatbot -->
 <button id="chatbot-toggle">🤖</button>
 
 <!-- Janela do Chatbot -->
 <div id="ai-chat-modal">
     <div id="ai-chat-header">
-        <div><strong>Assistente Antenados</strong><div style="font-size:12px;opacity:0.9"></div></div>
+        <div><strong>Assistente Antenados</strong></div>
         <div style="display:flex; gap:6px; align-items:center;">
             <button id="ai-clear" style="background:transparent; border:none; color:#fff; cursor:pointer;">Limpar</button>
             <button id="ai-close" style="background:transparent; border:none; color:#fff; cursor:pointer;">✕</button>
@@ -89,7 +115,6 @@ main { position: relative; height: calc(100vh - 0px); }
     </div>
     <div id="ai-messages"></div>
 
-    <!-- Perguntas rápidas -->
     <div class="quick-questions">
         <button class="quick-btn">O que é IA?</button>
         <button class="quick-btn">Como aprender lógica de programação?</button>
@@ -146,20 +171,36 @@ function send(){
     else appendBot('Desculpe, não sei responder. Pergunta será adicionada futuramente.');
 }
 
-// Abrir e fechar chatbot
-btn.onclick = ()=>{
-    modal.style.display='flex';
-    appendBot('Olá! Sou o Assistente Antenados. Clique em uma pergunta rápida ou digite sua dúvida.');
-};
-closeBtn.onclick = ()=> modal.style.display='none';
-clearBtn.onclick = ()=> messages.innerHTML='';
-sendBtn.onclick = send;
-input.addEventListener('keydown', e=>{ if(e.key==='Enter') send(); });
+// Abrir chatbot ao passar mouse
+btn.addEventListener('mouseenter', () => {
+    modal.style.display = 'flex';
+    if(messages.innerHTML.trim() === '') {
+        appendBot('Olá! Sou o Assistente Antenados. Clique em uma pergunta rápida ou digite sua dúvida.');
+    }
+});
+
+// Fechar chatbot ao sair do botão e do modal
+function checkMouseLeave() {
+    if(!btn.matches(':hover') && !modal.matches(':hover')) {
+        modal.style.display = 'none';
+    }
+}
+
+btn.addEventListener('mouseleave', checkMouseLeave);
+modal.addEventListener('mouseleave', checkMouseLeave);
+
+// Fechar manualmente pelo botão
+closeBtn.addEventListener('click', () => { modal.style.display = 'none'; });
+clearBtn.addEventListener('click', () => { messages.innerHTML = ''; });
+
+// Enviar mensagem
+sendBtn.addEventListener('click', send);
+input.addEventListener('keydown', (e) => { if(e.key==='Enter') send(); });
 
 // Perguntas rápidas
-document.querySelectorAll('.quick-btn').forEach(btn=>{
-    btn.addEventListener('click', ()=>{
-        input.value = btn.innerText;
+document.querySelectorAll('.quick-btn').forEach(b=>{
+    b.addEventListener('click', ()=>{
+        input.value = b.innerText;
         send();
     });
 });
