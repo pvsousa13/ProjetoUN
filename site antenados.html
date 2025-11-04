@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link rel="shortcut icon" href="A.png" type="image/x-icon">
 <title>Antenados</title>
-<link rel="stylesheet" href="index.css">
 <style>
 header {
   background-color: black;
@@ -24,9 +23,9 @@ nav ul { list-style: none; padding: 0; margin: 0; }
 nav ul li { display: inline; margin-right: 20px; }
 nav ul li a { text-decoration: none; color: white; font-family: 'Times New Roman', Times, serif; font-size: 30px; }
 .videos-mais-acessados-header { text-align: center; margin-right: 60px; }
-.header-items { display: flex; align-items: center; }
-.videos-mais-acessados-header h2 { font-size: 20px; color: hsl(0, 40%, 98%); margin-bottom: 5px; font-family: 'italico', Times, serif; margin-right: 10px; }
-.videos-mais-acessados-header ul { list-style: none; padding: 0; margin: 0; display: flex; justify-content: center; align-items: center; }
+.header-items { display: flex; align-items: center; flex-wrap: wrap; justify-content: center; }
+.videos-mais-acessados-header h2 { font-size: 20px; color: hsl(0, 40%, 98%); margin-bottom: 5px; font-family: 'italico', Times, serif; margin-right: 10px; text-align: center; }
+.videos-mais-acessados-header ul { list-style: none; padding: 0; margin: 0; display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 8px; }
 .videos-mais-acessados-header li { margin-right: 10px; }
 .videos-mais-acessados-header li a {
   text-decoration: none;
@@ -77,19 +76,12 @@ main { position: relative; height: calc(100vh - 0px); }
   margin-bottom: 28px;
   text-decoration: none;
   position: relative;
-  box-shadow:
-    0 0 5px #39d1f7,
-    0 0 10px #39d1f7,
-    0 0 20px #39d1f7;
+  box-shadow: 0 0 5px #39d1f7, 0 0 10px #39d1f7, 0 0 20px #39d1f7;
   transition: all 0.3s ease;
 }
 .botao:hover {
   color: #fff;
-  box-shadow:
-    0 0 10px #ff00ff,
-    0 0 20px #ff00ff,
-    0 0 40px #ff00ff,
-    0 0 80px #ff00ff;
+  box-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 40px #ff00ff, 0 0 80px #ff00ff;
   transform: scale(1.05);
 }
 .botao::before {
@@ -112,38 +104,30 @@ main { position: relative; height: calc(100vh - 0px); }
   50% { transform: scale(1.05); background-position: 100% 50%; }
   100% { transform: scale(1); background-position: 0% 50%; }
 }
-@media screen and (max-width: 600px) {
-  .botao {
-    width: 200px;
-    height: 46px;
-    font-size: 15px;
-    margin-bottom: 20px;
-  }
-}
 #chatbot-toggle {
-    position: fixed;
-    bottom: 20px;
-    right: 70px;
-    background: white;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 75px;
-    height: 75px;
-    font-size: 30px;
-    cursor: pointer;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 9999;
-    animation: chat-pulse-light 2.6s infinite ease-in-out;
+  position: fixed;
+  bottom: 20px;
+  right: 70px;
+  background: white;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 75px;
+  height: 75px;
+  font-size: 30px;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  animation: chat-pulse-light 2.6s infinite ease-in-out;
 }
 #chatbot-toggle:hover { animation: none; transform: scale(1.1); }
 @keyframes chat-pulse-light {
-    0%   { box-shadow: 0 4px 10px rgba(0,0,0,0.3), 0 0 0 0 rgba(255,215,0,0); transform: scale(1); }
-    50%  { box-shadow: 0 8px 20px rgba(0,0,0,0.4), 0 0 15px 5px rgba(255,215,0,0.2); transform: scale(1.3); }
-    100% { box-shadow: 0 4px 10px rgba(0,0,0,0.3), 0 0 0 0 rgba(255,215,0,0); transform: scale(1); }
+  0%   { box-shadow: 0 4px 10px rgba(0,0,0,0.3), 0 0 0 0 rgba(255,215,0,0); transform: scale(1); }
+  50%  { box-shadow: 0 8px 20px rgba(0,0,0,0.4), 0 0 15px 5px rgba(255,215,0,0.2); transform: scale(1.3); }
+  100% { box-shadow: 0 4px 10px rgba(0,0,0,0.3), 0 0 0 0 rgba(255,215,0,0); transform: scale(1); }
 }
 #ai-chat-modal {
   position: fixed; right: 20px; bottom: 100px;
@@ -162,114 +146,111 @@ main { position: relative; height: calc(100vh - 0px); }
 .quick-questions{ display:flex; gap:8px; flex-wrap:wrap; padding:8px; background:#f6f8fc; border-top:1px solid #ddd; }
 .quick-btn{ background:#eef7ff; color:#0b3b91; padding:6px 10px; border-radius:8px; cursor:pointer; border:1px solid transparent; font-size:13px; }
 .quick-btn:hover{ background:#d0e4ff; }
+
+@media screen and (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    position: relative;
+  }
+  .logo img { width: 120px; margin-bottom: 10px; }
+  .videos-mais-acessados-header { margin: 0; text-align: center; }
+  .videos-mais-acessados-header h2 { font-size: 18px; margin-bottom: 8px; }
+  .videos-mais-acessados-header li a { font-size: 14px; padding: 5px 8px; }
+  .botao-container {
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    align-items: center;
+  }
+  .botao {
+    width: 80%;
+    max-width: 280px;
+    height: 46px;
+    font-size: 15px;
+    margin-bottom: 20px;
+  }
+  #chatbot-toggle {
+    right: 20px;
+    bottom: 20px;
+    width: 60px;
+    height: 60px;
+  }
+}
 </style>
 </head>
 <body>
 <header>
-    <div class="logo"><img src="Logo antenados.png" alt="Logo do Site"></div>
-    <nav><ul><li><a href="#"></a></li></ul></nav>
-    <div class="videos-mais-acessados-header">
-        <div class="header-items">
-            <h2>Dicas para iniciantes</h2>
-            <ul>
-                <li><a href="https://www.youtube.com/watch?v=1EX9IJBYX60&list=PL4ITHPnJ4STiJDmDa0-pL8iZsYCQK2R6u" target="_blank">Logica de programação</a></li>
-                <li><a href="https://www.youtube.com/watch?v=22nd99SLgNA" target="_blank">Linguagens</a></li>
-                <li><a href="https://www.youtube.com/watch?v=APmtMvaYMLg" target="_blank">Tecnologia da Informação</a></li>
-            </ul>
-        </div>
+  <div class="logo"><img src="Logo antenados.png" alt="Logo do Site"></div>
+  <div class="videos-mais-acessados-header">
+    <div class="header-items">
+      <h2>Dicas para iniciantes</h2>
+      <ul>
+        <li><a href="https://www.youtube.com/watch?v=1EX9IJBYX60" target="_blank">Logica de programação</a></li>
+        <li><a href="https://www.youtube.com/watch?v=22nd99SLgNA" target="_blank">Linguagens</a></li>
+        <li><a href="https://www.youtube.com/watch?v=APmtMvaYMLg" target="_blank">Tecnologia da Informação</a></li>
+      </ul>
     </div>
+  </div>
 </header>
 <main>
-    <div class="background-image"></div>
-    <div class="botao-container">
-        <a href="i.a.html" class="botao">I.A</a>
-        <a href="backend.html" class="botao">Back End</a>
-        <a href="I.o.t.html" class="botao">I O T</a>
-        <a href="redes.html" class="botao">Redes</a>
-        <a href="Machine Learning.html" class="botao">Machine Learning</a>
-    </div>
+  <div class="background-image"></div>
+  <div class="botao-container">
+    <a href="i.a.html" class="botao">I.A</a>
+    <a href="backend.html" class="botao">Back End</a>
+    <a href="I.o.t.html" class="botao">I O T</a>
+    <a href="redes.html" class="botao">Redes</a>
+    <a href="Machine Learning.html" class="botao">Machine Learning</a>
+  </div>
 </main>
 <button id="chatbot-toggle">🤖</button>
 <div id="ai-chat-modal">
-    <div id="ai-chat-header">
-        <div><strong>Assistente Antenados</strong></div>
-        <div style="display:flex; gap:6px; align-items:center;">
-            <button id="ai-clear" style="background:transparent; border:none; color:#fff; cursor:pointer;">Limpar</button>
-            <button id="ai-close" style="background:transparent; border:none; color:#fff; cursor:pointer;">✕</button>
-        </div>
+  <div id="ai-chat-header">
+    <div><strong>Assistente Antenados</strong></div>
+    <div style="display:flex; gap:6px; align-items:center;">
+      <button id="ai-clear" style="background:transparent; border:none; color:#fff; cursor:pointer;">Limpar</button>
+      <button id="ai-close" style="background:transparent; border:none; color:#fff; cursor:pointer;">✕</button>
     </div>
-    <div id="ai-messages"></div>
-    <div class="quick-questions">
-        <button class="quick-btn">O que é IA?</button>
-        <button class="quick-btn">Como aprender lógica de programação?</button>
-        <button class="quick-btn">Quais linguagens são mais usadas?</button>
-        <button class="quick-btn">Onde encontrar pesquisas sobre ML?</button>
-    </div>
-    <div id="ai-input-row">
-        <input id="ai-input" placeholder="Pergunte algo..." />
-        <button id="ai-send">Enviar</button>
-    </div>
+  </div>
+  <div id="ai-messages"></div>
+  <div class="quick-questions">
+    <button class="quick-btn">O que é IA?</button>
+    <button class="quick-btn">Como aprender lógica de programação?</button>
+    <button class="quick-btn">Quais linguagens são mais usadas?</button>
+    <button class="quick-btn">Onde encontrar pesquisas sobre ML?</button>
+  </div>
+  <div id="ai-input-row">
+    <input id="ai-input" placeholder="Pergunte algo...">
+    <button id="ai-send">Enviar</button>
+  </div>
 </div>
 <script>
-const btn = document.getElementById('chatbot-toggle');
-const modal = document.getElementById('ai-chat-modal');
-const closeBtn = document.getElementById('ai-close');
-const clearBtn = document.getElementById('ai-clear');
-const sendBtn = document.getElementById('ai-send');
-const input = document.getElementById('ai-input');
-const messages = document.getElementById('ai-messages');
-const FAQ = [
-    {q:'O que é IA?', a:'Inteligência Artificial (IA) é um campo que cria sistemas capazes de aprender e tomar decisões inteligentes.'},
-    {q:'Como aprender lógica de programação?', a:'Comece com variáveis, condicionais, loops. Sites como Codecademy e freeCodeCamp ajudam bastante.'},
-    {q:'Quais linguagens são mais usadas?', a:'Python, JavaScript, Java e C# são populares para desenvolvimento e automação.'},
-    {q:'Onde encontrar pesquisas sobre ML?', a:'Google Scholar, ArXiv, Coursera e Udemy oferecem ótimos materiais de pesquisa.'}
+const btn=document.getElementById('chatbot-toggle');
+const modal=document.getElementById('ai-chat-modal');
+const closeBtn=document.getElementById('ai-close');
+const clearBtn=document.getElementById('ai-clear');
+const sendBtn=document.getElementById('ai-send');
+const input=document.getElementById('ai-input');
+const messages=document.getElementById('ai-messages');
+const FAQ=[
+ {q:'O que é IA?',a:'Inteligência Artificial (IA) é um campo que cria sistemas capazes de aprender e tomar decisões inteligentes.'},
+ {q:'Como aprender lógica de programação?',a:'Comece com variáveis, condicionais, loops. Sites como Codecademy e freeCodeCamp ajudam bastante.'},
+ {q:'Quais linguagens são mais usadas?',a:'Python, JavaScript, Java e C# são populares para desenvolvimento e automação.'},
+ {q:'Onde encontrar pesquisas sobre ML?',a:'Google Scholar, ArXiv, Coursera e Udemy oferecem ótimos materiais de pesquisa.'}
 ];
-function appendBot(txt){
-    const el = document.createElement('div');
-    el.className='ai-msg bot';
-    el.innerText=txt;
-    messages.appendChild(el);
-    messages.scrollTop=messages.scrollHeight;
-}
-function appendUser(txt){
-    const el = document.createElement('div');
-    el.className='ai-msg user';
-    el.innerText=txt;
-    messages.appendChild(el);
-    messages.scrollTop=messages.scrollHeight;
-}
-function send(){
-    const text = input.value.trim();
-    if(!text) return;
-    appendUser(text);
-    input.value='';
-    const found = FAQ.find(f=>f.q.toLowerCase()===text.toLowerCase());
-    if(found) appendBot(found.a);
-    else appendBot('Desculpe, não sei responder. Pergunta será adicionada futuramente.');
-}
-btn.addEventListener('mouseenter', () => {
-    modal.style.display = 'flex';
-    if(messages.innerHTML.trim() === '') {
-        appendBot('Olá! Sou o Assistente Antenados. Clique em uma pergunta rápida ou digite sua dúvida.');
-    }
-});
-function checkMouseLeave() {
-    if(!btn.matches(':hover') && !modal.matches(':hover')) {
-        modal.style.display = 'none';
-    }
-}
-btn.addEventListener('mouseleave', checkMouseLeave);
-modal.addEventListener('mouseleave', checkMouseLeave);
-closeBtn.addEventListener('click', () => { modal.style.display = 'none'; });
-clearBtn.addEventListener('click', () => { messages.innerHTML = ''; });
-sendBtn.addEventListener('click', send);
-input.addEventListener('keydown', (e) => { if(e.key==='Enter') send(); });
-document.querySelectorAll('.quick-btn').forEach(b=>{
-    b.addEventListener('click', ()=>{
-        input.value = b.innerText;
-        send();
-    });
-});
+function appendBot(txt){const el=document.createElement('div');el.className='ai-msg bot';el.innerText=txt;messages.appendChild(el);messages.scrollTop=messages.scrollHeight;}
+function appendUser(txt){const el=document.createElement('div');el.className='ai-msg user';el.innerText=txt;messages.appendChild(el);messages.scrollTop=messages.scrollHeight;}
+function send(){const text=input.value.trim();if(!text)return;appendUser(text);input.value='';const found=FAQ.find(f=>f.q.toLowerCase()===text.toLowerCase());if(found)appendBot(found.a);else appendBot('Desculpe, não sei responder. Pergunta será adicionada futuramente.');}
+btn.addEventListener('mouseenter',()=>{modal.style.display='flex';if(messages.innerHTML.trim()===''){appendBot('Olá! Sou o Assistente Antenados. Clique em uma pergunta rápida ou digite sua dúvida.');}});
+function checkMouseLeave(){if(!btn.matches(':hover')&&!modal.matches(':hover')){modal.style.display='none';}}
+btn.addEventListener('mouseleave',checkMouseLeave);
+modal.addEventListener('mouseleave',checkMouseLeave);
+closeBtn.addEventListener('click',()=>{modal.style.display='none';});
+clearBtn.addEventListener('click',()=>{messages.innerHTML='';});
+sendBtn.addEventListener('click',send);
+input.addEventListener('keydown',e=>{if(e.key==='Enter')send();});
+document.querySelectorAll('.quick-btn').forEach(b=>{b.addEventListener('click',()=>{input.value=b.innerText;send();});});
 </script>
 </body>
 </html>
